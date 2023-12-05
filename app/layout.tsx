@@ -1,9 +1,7 @@
 import { Metadata } from "next";
-import { Inter } from "next/font/google";
+
 import Header from "./ui/header/page";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "ООО Рэйдекс",
@@ -33,7 +31,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
-      <body className={inter.className}>
+      <body>
         <Header />
         {children}
       </body>

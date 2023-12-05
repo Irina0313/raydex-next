@@ -1,8 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 
 const Logo = () => {
   return (
-    <img className="w-auto h-20" src="/Raydex_logo.png" alt="Logo image" />
+    <Image src="/Raydex_logo.png" alt="Logo image" width="178" height="70" />
   );
 };
 

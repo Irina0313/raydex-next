@@ -1,18 +1,25 @@
 "use client";
+import { useState } from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import { Link } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import Container from "@mui/material/Container";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import AdbIcon from "@mui/icons-material/Adb";
+import { useTheme } from "@mui/material";
 
-import Link from "next/link";
-import { Fragment, useState, useRef } from "react";
-import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
-import { Bars3Icon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import Logo from "../logo/page";
-
 interface IPage {
   id: string;
   name: string;
-}
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
 }
 
 const products = [
@@ -43,23 +50,9 @@ const products = [
   },
 ];
 
-const timeoutDuration = 120;
-
 const Header = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const triggerRef = useRef<HTMLButtonElement>(null);
-  const timeOutRef = useRef<NodeJS.Timeout | undefined>(undefined);
-
-  const handleEnter = (isOpen: boolean) => {
-    clearTimeout(timeOutRef.current);
-    !isOpen && triggerRef.current?.click();
-  };
-
-  const handleLeave = (isOpen: boolean) => {
-    timeOutRef.current = setTimeout(() => {
-      isOpen && triggerRef.current?.click();
-    }, timeoutDuration);
-  };
+  //const pages = ["Products", "Pricing", "Blog"];
+  const theme = useTheme();
 
   const pages: IPage[] = [
     { id: "catalog", name: "Каталог" },
@@ -67,111 +60,87 @@ const Header = () => {
     { id: "contacts", name: "Контакты" },
   ];
 
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
   return (
-    <header className="fixed top-0 left-0 w-full bg-sheme50 ">
-      <nav
-        className="relative mx-auto flex max-w-7xl items-center justify-start p-1 lg:px-8"
-        aria-label="Global"
-      >
-        <div className="flex ">
-          <a href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <Logo />
-          </a>
-        </div>
+    <header>
+      <AppBar position="static">
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <Box>
+              <Link href={"/"} underline="hover">
+                <Logo />
+              </Link>
+            </Box>
 
-        <div className="flex lg:hidden">
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-          </button>
-        </div>
-
-        <Popover.Group className="hidden lg:flex lg:justify-center lg:gap-x-12 lg:flex-1">
-          <Popover>
-            {({ open }) => (
-              <div
-                onMouseEnter={() => handleEnter(open)}
-                onMouseLeave={() => handleLeave(open)}
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
               >
-                <Popover.Button ref={triggerRef}>
-                  <Link
-                    href="/catalog"
-                    className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900  "
-                  >
-                    Каталог
-                  </Link>
-                </Popover.Button>
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: "block", md: "none" },
+                }}
+              >
+                {pages.map((page) => (
+                  <MenuItem key={page.id} onClick={handleCloseNavMenu}>
+                    <Link href={`/${page.id}`}>
+                      <Typography textAlign="center">{page.name}</Typography>
+                    </Link>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
 
-                <Transition
-                  as={Fragment}
-                  enter="transition ease-out duration-200"
-                  enterFrom="opacity-0 translate-y-1"
-                  enterTo="opacity-100 translate-y-0"
-                  leave="transition ease-in duration-150"
-                  leaveFrom="opacity-100 translate-y-0"
-                  leaveTo="opacity-0 translate-y-1"
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
+                gap: "10px",
+              }}
+            >
+              {pages.map((page) => (
+                <Link
+                  key={page.id}
+                  id={page.id}
+                  href={`/${page.id}`}
+                  color={theme.palette.common.white}
+                  underline="hover"
                 >
-                  <Popover.Panel
-                    className="absolute left-0 top-20 z-10 mt-3 w-screen max-w-fit overflow-hidden  bg-white shadow-lg ring-1 ring-sheme600 m-auto"
-                    static
-                  >
-                    <div className="p-4 flex flex-wrap">
-                      {products.map((item) => (
-                        <div
-                          key={item.name}
-                          className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-sheme100"
-                        >
-                          <div>
-                            <a
-                              href={item.href}
-                              className="block font-semibold text-gray-900"
-                            >
-                              {item.name}
-                              <span className="absolute inset-0" />
-                            </a>
-                            <p className="mt-1 text-gray-600">
-                              {item.description}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                    {/*  {<div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
-                  {callsToAction.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
-                    >
-                      <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
-                      {item.name}
-                    </a>
-                  ))} 
-                </div>} */}
-                  </Popover.Panel>
-                </Transition>
-              </div>
-            )}
-          </Popover>
-          <a
-            href="/company"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            О нас
-          </a>
-          <a
-            href="/contacts"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Контакты
-          </a>
-        </Popover.Group>
-      </nav>
+                  {page.name}
+                </Link>
+              ))}
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
     </header>
   );
 };

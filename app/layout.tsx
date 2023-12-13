@@ -1,7 +1,16 @@
 import { Metadata } from "next";
-
-import Header from "./ui/header/page";
+import { Roboto } from "next/font/google";
+import StyledComponentsRegistry from "./lib/AntdRegistry";
+import theme from "./lib/theme/themeConfig";
+import HeaderComponent from "./ui/header/page";
+import BreadcrumbComponent from "./ui/breadcrumb";
 import "./globals.css";
+import { ConfigProvider } from "antd";
+
+const roboto = Roboto({
+  subsets: ["cyrillic"],
+  weight: "400",
+});
 
 export const metadata: Metadata = {
   title: "ООО Рэйдекс",
@@ -24,16 +33,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="ru">
-      <body>
-        <Header />
-        {children}
+      <body className={roboto.className}>
+        <ConfigProvider theme={theme}>
+          <StyledComponentsRegistry>
+            <HeaderComponent />
+            <BreadcrumbComponent />
+            {children}
+          </StyledComponentsRegistry>
+        </ConfigProvider>
       </body>
     </html>
   );

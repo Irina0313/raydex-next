@@ -1,4 +1,4 @@
-import { catalog, CatalogItemType } from "./catalog/catalog";
+import { catalog, CatalogItemType } from "../lib/catalog/catalog";
 
 export function findPathByName(
   name: string,

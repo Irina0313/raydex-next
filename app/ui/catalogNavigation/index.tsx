@@ -4,7 +4,7 @@ import { Menu } from "antd";
 import type { MenuProps } from "antd/es/menu";
 import { CatalogItemType, catalog } from "../../lib/catalog/catalog";
 import styles from "./catalog.module.css";
-import { findPathByName } from "@/app/lib/getFullPath";
+import { findPathByName } from "@/app/utils/getFullPath";
 
 type MenuItem = Required<MenuProps>["items"][number];
 

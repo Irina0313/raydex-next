@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
-import { Layout, Space, theme } from "antd";
+import { useParams } from "next/navigation";
+import { Layout, theme } from "antd";
 import BreadcrumbComponent from "../ui/breadcrumb";
-import { catalog } from "../lib/catalog/catalog";
 import CatalogNavigation from "../ui/catalogNavigation";
+import { getPage } from "../utils/getPage";
 import styles from "./catalog.module.css";
 
 const headerStyle: React.CSSProperties = {
@@ -49,26 +49,28 @@ export default function CatalogLayout({
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-  const [selectedCategory, setSelectedCategory] = useState("");
 
-  const setCategory = (category: string | null) => {
-    category && setSelectedCategory(category);
-  };
+  const params = useParams();
+  const title = getPage(Object.values(params).slice(-1).toString())?.name;
 
   return (
     <div className={styles.layoutContainer}>
-      <BreadcrumbComponent setCategory={setCategory} />
-      <h1 style={headerStyle}>{selectedCategory}</h1>
-      <Layout hasSider>
-        <Sider style={siderStyle} width={350}>
-          <CatalogNavigation />
-        </Sider>
-        <Layout>
-          <Content style={{ margin: "24px 16px", overflow: "initial" }}>
-            {children}
-          </Content>
+      <BreadcrumbComponent />
+      <h1 style={headerStyle}>{title}</h1>
+      {params.product ? (
+        <div>{children}</div>
+      ) : (
+        <Layout hasSider>
+          <Sider style={siderStyle} width={350}>
+            <CatalogNavigation />
+          </Sider>
+          <Layout>
+            <Content style={{ margin: "24px 16px", overflow: "initial" }}>
+              {children}
+            </Content>
+          </Layout>
         </Layout>
-      </Layout>
+      )}
     </div>
   );
 }

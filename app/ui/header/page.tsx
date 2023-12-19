@@ -2,7 +2,7 @@
 
 import { Layout, Menu } from "antd";
 import styles from "./header.module.css";
-import { pages } from "../breadcrumb";
+import { pages } from "@/app/utils/getPage";
 const { Header, Content, Footer } = Layout;
 
 import Logo from "../logo/page";

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Card, Button } from "antd";
 import ImagesCarousel from "../imagesCarusel";
-import { findPathByName } from "@/app/lib/getFullPath";
+import { findPathByName } from "@/app/utils/getFullPath";
 import { ProductItemType } from "@/app/lib/catalog/products/01_XRayAndGammaRadiationDosimeters/ElectronicDosimeters";
 import { CatalogItemType } from "@/app/lib/catalog/catalog";
 

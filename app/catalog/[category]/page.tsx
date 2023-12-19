@@ -6,7 +6,7 @@ import { catalog } from "@/app/lib/catalog/catalog";
 import ImagesCarousel from "@/app/ui/imagesCarusel";
 import Link from "next/link";
 import theme from "@/app/lib/theme/themeConfig";
-import { findPathByName } from "@/app/lib/getFullPath";
+import { findPathByName } from "@/app/utils/getFullPath";
 import ProductCard from "@/app/ui/productCard";
 
 const { Meta } = Card;

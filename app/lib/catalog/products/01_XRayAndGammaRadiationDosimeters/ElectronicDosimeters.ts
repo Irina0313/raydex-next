@@ -37,7 +37,7 @@ export const electronicDosimetrs: ProductItemType[] = [
   },
   {
     id: "x-ray-and-gamma-radiation-dosimeter",
-    name: "Дозиметр гамма-излучения ДКГ-PM1211",
+    name: "Дозиметр гамма-излучения",
     path: "x-ray-and-gamma-radiation-dosimeter-1",
     images: [
       "./assets/productsImages/electronicDosimetrs/1/1.webp",

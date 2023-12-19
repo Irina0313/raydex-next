@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "antd";
 import { catalog } from "@/app/lib/catalog/catalog";
+import ProductCard from "@/app/ui/productCard";
 
 const { Meta } = Card;
 
@@ -24,24 +25,12 @@ export default function ProductsPage({
   const category = catalog.filter((p) => p.path === params.category)[0];
   const subcategory = category.subcategory?.filter(
     (s) => s.path === params.products,
-  );
-  const products = subcategory && subcategory[0]?.products;
+  )[0];
+  const products = subcategory?.products;
 
   return (
     <div style={wrapperStyle}>
-      {products &&
-        products.map((p) => (
-          <div key={p?.id} style={divStyle}>
-            {p && (
-              <>
-                <p>{p.name}</p>
-                <p>{p.status}</p>
-                <p>{p.shortDescription}</p>
-                <p>{subcategory[0]?.name}</p>
-              </>
-            )}
-          </div>
-        ))}
+      <ProductCard category={products} imagePathPrefix="../../" />
     </div>
   );
 }

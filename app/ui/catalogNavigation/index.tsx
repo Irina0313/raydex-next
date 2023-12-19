@@ -4,6 +4,7 @@ import { Menu } from "antd";
 import type { MenuProps } from "antd/es/menu";
 import { CatalogItemType, catalog } from "../../lib/catalog/catalog";
 import styles from "./catalog.module.css";
+import { findPathByName } from "@/app/lib/getFullPath";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -21,12 +22,13 @@ function getItem(
   } as MenuItem;
 }
 
-export default function CatalogNavigation({
-  getCategory,
-}: {
-  getCategory: (category: string) => void;
-}) {
+export default function CatalogNavigation() {
   const route = useRouter();
+
+  const handleMenuClick = (key: string) => {
+    const path = findPathByName(key);
+    route.push(`${path}`);
+  };
 
   const createMenuItems = (
     items: CatalogItemType[],
@@ -42,12 +44,7 @@ export default function CatalogNavigation({
 
       return getItem(
         <span
-          onClick={() => {
-            const fullPath = `${parentPath}/${path}`;
-
-            route.push(`${fullPath}`);
-            getCategory(fullPath);
-          }}
+          style={{ display: "inline-block", width: "100%", height: "100%" }}
         >
           {name}
         </span>,
@@ -60,5 +57,12 @@ export default function CatalogNavigation({
 
   const items: MenuItem[] = createMenuItems(catalog);
 
-  return <Menu mode="inline" style={{ width: 350 }} items={items} />;
+  return (
+    <Menu
+      onClick={(e) => handleMenuClick(e.key)}
+      mode="inline"
+      style={{ width: 350 }}
+      items={items}
+    />
+  );
 }

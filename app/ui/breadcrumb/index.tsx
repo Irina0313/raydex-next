@@ -14,7 +14,9 @@ export const pages = [
   { key: "contacts", name: "Контакты" },
 ];
 
-const BreadcrumbComponent: React.FC = () => {
+const BreadcrumbComponent: React.FC<{
+  setCategory: (category: string | null) => void;
+}> = ({ setCategory }) => {
   const params = usePathname()
     .split("/")
     .filter((item) => !!item);
@@ -50,6 +52,8 @@ const BreadcrumbComponent: React.FC = () => {
       return { title: page?.name, path: `/${path}` };
     }
   });
+
+  setCategory(results[results.length - 1]?.title || null);
 
   const breadcrumbItems: ItemType[] = [
     {

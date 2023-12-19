@@ -1,0 +1,26 @@
+.dots * {
+  border: 1px solid #2e69ad;
+  background-color: #2e69ad;
+  opacity: 1;
+}
+
+.carouselContainer {
+  position: relative;
+}
+
+.carouselBtn {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+}
+
+.carouselLeftBtn {
+  left: 0;
+}
+
+.carouselRightBtn {
+  right: 0;
+}

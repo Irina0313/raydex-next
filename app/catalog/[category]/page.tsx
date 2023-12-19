@@ -1,6 +1,13 @@
+"use client";
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
-import { Card } from "antd";
+import { Button, Card, Carousel, Flex, Image } from "antd";
 import { catalog } from "@/app/lib/catalog/catalog";
+import ImagesCarousel from "@/app/ui/imagesCarusel";
+import Link from "next/link";
+import theme from "@/app/lib/theme/themeConfig";
+import { findPathByName } from "@/app/lib/getFullPath";
+import ProductCard from "@/app/ui/productCard";
 
 const { Meta } = Card;
 
@@ -26,25 +33,8 @@ export default function SubcategoryPage({
     category.subcategory && category.subcategory?.flatMap((p) => p.products);
 
   return (
-    <div style={wrapperStyle}>
-      {category.subcategory &&
-        subcategory?.map((p) => (
-          <div key={p?.id} style={divStyle}>
-            {p && (
-              <>
-                <p>{p.name}</p>
-                <p>{p.status}</p>
-                <p>{p.shortDescription}</p>
-                <p>
-                  {
-                    category.subcategory?.find((s) => s.products?.includes(p))
-                      ?.name
-                  }
-                </p>
-              </>
-            )}
-          </div>
-        ))}
-    </div>
+    <Flex wrap="wrap" gap={50} justify="center">
+      <ProductCard category={subcategory} imagePathPrefix="../" />
+    </Flex>
   );
 }

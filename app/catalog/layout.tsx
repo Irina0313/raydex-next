@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Layout, Space, theme } from "antd";
+import BreadcrumbComponent from "../ui/breadcrumb";
 import { catalog } from "../lib/catalog/catalog";
 import CatalogNavigation from "../ui/catalogNavigation";
 import styles from "./catalog.module.css";
@@ -48,43 +49,23 @@ export default function CatalogLayout({
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
-  const [selectedCategory, setSelectedCategory] = useState(catalog[0].name);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  const getCategory = (path: string) => {
-    const pathItems = path.split("/");
-    const selectedCategoryPath = pathItems[2];
-    const selectedSubcategoryPath =
-      (pathItems.length > 3 && pathItems[pathItems.length - 1]) || null;
-
-    const selectedCategory = catalog.filter(
-      (p) => p.path === selectedCategoryPath,
-    )[0];
-    const selectedSubcategoryName = selectedCategory.subcategory?.filter(
-      (sub) => sub?.path === selectedSubcategoryPath,
-    )[0]?.name;
-
-    setSelectedCategory(selectedSubcategoryName || selectedCategory.name);
+  const setCategory = (category: string | null) => {
+    category && setSelectedCategory(category);
   };
 
   return (
     <div className={styles.layoutContainer}>
+      <BreadcrumbComponent setCategory={setCategory} />
       <h1 style={headerStyle}>{selectedCategory}</h1>
       <Layout hasSider>
         <Sider style={siderStyle} width={350}>
-          <CatalogNavigation getCategory={getCategory} />
+          <CatalogNavigation />
         </Sider>
         <Layout>
           <Content style={{ margin: "24px 16px", overflow: "initial" }}>
-            <div
-              style={{
-                padding: 24,
-                textAlign: "center",
-                background: colorBgContainer,
-                borderRadius: borderRadiusLG,
-              }}
-            >
-              {children}
-            </div>
+            {children}
           </Content>
         </Layout>
       </Layout>

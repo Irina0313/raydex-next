@@ -8,6 +8,5 @@
 
 .menu {
   display: flex;
-  alignitems: center;
-  border-bottom: none;
+  align-items: center;
 }

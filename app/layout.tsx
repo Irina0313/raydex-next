@@ -3,7 +3,6 @@ import { Roboto } from "next/font/google";
 import StyledComponentsRegistry from "./lib/AntdRegistry";
 import theme from "./lib/theme/themeConfig";
 import HeaderComponent from "./ui/header/page";
-import BreadcrumbComponent from "./ui/breadcrumb";
 import "./globals.css";
 import { ConfigProvider } from "antd";
 
@@ -40,7 +39,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         <ConfigProvider theme={theme}>
           <StyledComponentsRegistry>
             <HeaderComponent />
-            <BreadcrumbComponent />
+
             {children}
           </StyledComponentsRegistry>
         </ConfigProvider>

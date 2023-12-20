@@ -40,8 +40,8 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         <ConfigProvider theme={theme}>
           <StyledComponentsRegistry>
             <HeaderComponent />
+            <main className="main">{children}</main>
 
-            {children}
             <FooterComponent />
           </StyledComponentsRegistry>
         </ConfigProvider>

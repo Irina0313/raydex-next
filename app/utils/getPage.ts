@@ -3,8 +3,8 @@ import { CatalogItemType } from "../lib/catalog/catalog";
 import { ProductItemType } from "../lib/catalog/products/01_XRayAndGammaRadiationDosimeters/ElectronicDosimeters";
 
 export const pages = [
-  { key: "catalog", name: "Каталог" },
   { key: "company", name: "О нас" },
+  { key: "catalog", name: "Каталог" },
   { key: "contacts", name: "Контакты" },
 ];
 

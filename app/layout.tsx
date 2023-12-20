@@ -2,7 +2,8 @@ import { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import StyledComponentsRegistry from "./lib/AntdRegistry";
 import theme from "./lib/theme/themeConfig";
-import HeaderComponent from "./ui/header/page";
+import HeaderComponent from "./ui/header";
+import FooterComponent from "./ui/footer";
 import "./globals.css";
 import { ConfigProvider } from "antd";
 
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
             <HeaderComponent />
 
             {children}
+            <FooterComponent />
           </StyledComponentsRegistry>
         </ConfigProvider>
       </body>

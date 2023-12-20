@@ -1,5 +1,6 @@
 "use client";
 
+import React, { ReactNode } from "react";
 import { useParams } from "next/navigation";
 import { Layout, theme } from "antd";
 import BreadcrumbComponent from "../ui/breadcrumb";
@@ -8,7 +9,6 @@ import { getPage } from "../utils/getPage";
 import styles from "./catalog.module.css";
 
 const headerStyle: React.CSSProperties = {
-  /* textAlign: "center", */
   color: "rgb(51, 51, 51)",
   height: 75,
   paddingInline: 0,
@@ -26,7 +26,6 @@ const contentStyle: React.CSSProperties = {
 };
 
 const siderStyle: React.CSSProperties = {
-  //textAlign: "center",
   width: "450px",
   lineHeight: "120px",
   backgroundColor: "#fff",
@@ -40,17 +39,13 @@ const footerStyle: React.CSSProperties = {
 
 const { Header, Footer, Sider, Content } = Layout;
 
-export default function CatalogLayout({
-  children,
-}: {
-  children: React.ReactNode;
-  catalogNavigation: React.ReactNode;
-}) {
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
+interface CatalogLayoutProps {
+  children: ReactNode;
+}
 
+export default function CatalogLayout({ children }: CatalogLayoutProps) {
   const params = useParams();
+
   const title = getPage(Object.values(params).slice(-1).toString())?.name;
 
   return (

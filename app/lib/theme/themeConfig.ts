@@ -28,6 +28,7 @@ const theme: ThemeConfig = {
   components: {
     Layout: {
       headerBg: "#fff",
+      headerHeight: 100,
     },
 
     Menu: {

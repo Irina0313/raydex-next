@@ -2,12 +2,11 @@
 
 import { useParams } from "next/navigation";
 import { useState } from "react";
-import HeaderComponent from "./ui/header/page";
+import HeaderComponent from "./ui/header";
 import BreadcrumbComponent from "./ui/breadcrumb";
 
 export default function App() {
   const params = useParams();
-  console.log("params", params);
 
   return (
     <>

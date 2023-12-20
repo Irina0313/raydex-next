@@ -1,0 +1,47 @@
+.image {
+  display: block;
+  width: 100%;
+}
+
+.carouselContainer {
+  position: relative;
+}
+
+.imagesContainer {
+}
+
+.carouselBtn {
+  position: absolute;
+  top: 30%;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+  border-radius: 4px;
+}
+.carouselBtn:hover {
+  background-color: #dfe8ed;
+  cursor: pointer;
+}
+
+.carouselBtnActive {
+  background-color: #2e69ad;
+}
+
+.carouselLeftBtn {
+  left: -20px;
+}
+
+.carouselRightBtn {
+  right: -20px;
+}
+
+.arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrowRight {
+  rotate: 180deg;
+}

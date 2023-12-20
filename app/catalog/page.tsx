@@ -1,6 +1,7 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 import { Card, Flex } from "antd";
+
 import Link from "next/link";
 import { CatalogItemType, catalog } from "../lib/catalog/catalog";
 import { findPathByName } from "../utils/getFullPath";

@@ -1,0 +1,11 @@
+.shortDescriptionContainer,
+.fullDescription {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.highlightedText {
+  background-color: rgb(238, 238, 238);
+  bordet: solid 1px rgb(204, 204, 204);
+}

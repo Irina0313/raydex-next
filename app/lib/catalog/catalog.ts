@@ -2,7 +2,7 @@ import {
   electronicDosimetrs,
   ProductItemType,
 } from "./products/01_XRayAndGammaRadiationDosimeters/ElectronicDosimeters";
-import { personalDosimetrs } from "./products/01_XRayAndGammaRadiationDosimeters/PersonalDosimeters";
+/* import { personalDosimetrs } from "./products/01_XRayAndGammaRadiationDosimeters/PersonalDosimeters"; */
 
 export type CatalogItemType = {
   id: string;
@@ -28,7 +28,7 @@ export const catalog: CatalogItemType[] = [
         id: "sub2",
         path: "personal-dosimeters",
         name: "Индивидуальные дозиметры",
-        products: personalDosimetrs,
+        /* products: personalDosimetrs, */
       },
     ],
   },

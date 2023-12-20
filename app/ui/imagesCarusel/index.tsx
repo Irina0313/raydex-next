@@ -8,14 +8,6 @@ const ImagesCarousel: React.FC<{
   images: string[];
   imagePathPrefix?: string;
 }> = ({ images, imagePathPrefix = "" }) => {
-  /* return (
-    <Carousel effect="fade" dots={{ className: `${style.dots}` }}>
-      {images.map((img) => (
-        <img key={img} src={`../${img}`} alt="Фото товара" />
-      ))}
-    </Carousel>
-  ); */
-
   const carouselRef = useRef<CarouselRef>(null);
 
   const handleNextSlide = () => {

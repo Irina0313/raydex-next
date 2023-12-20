@@ -1,0 +1,25 @@
+.topSection {
+  display: flex;
+
+  justify-content: space-between;
+}
+.shortDescription {
+  width: calc(100vw - 630px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sliderContainer {
+  margin: 0 20px;
+  width: 454px;
+}
+
+.detailsLink {
+  color: #2e69ad;
+  line-height: 3rem;
+}
+
+.detailsLink:hover {
+  cursor: pointer;
+}

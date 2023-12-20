@@ -45,6 +45,10 @@ export default function CatalogNavigation() {
       return getItem(
         <span
           style={{ display: "inline-block", width: "100%", height: "100%" }}
+          onClick={() => {
+            const path = findPathByName(name);
+            route.push(`${path}`);
+          }}
         >
           {name}
         </span>,

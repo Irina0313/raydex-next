@@ -2,28 +2,19 @@
 
 import React, { ReactNode } from "react";
 import { useParams } from "next/navigation";
-import { Layout, theme } from "antd";
-import BreadcrumbComponent from "../ui/breadcrumb";
+import { Layout } from "antd";
 import CatalogNavigation from "../ui/catalogNavigation";
-import { getPage } from "../utils/getPage";
+import PageTitle from "../ui/pageTitle";
 import styles from "./catalog.module.css";
 
-const headerStyle: React.CSSProperties = {
+/* const headerStyle: React.CSSProperties = {
   color: "rgb(51, 51, 51)",
   height: 75,
   paddingInline: 0,
   fontWeight: "700",
   fontSize: "2.8em",
   lineHeight: "64px",
-};
-
-const contentStyle: React.CSSProperties = {
-  textAlign: "center",
-  minHeight: 120,
-  lineHeight: "120px",
-  color: "#fff",
-  backgroundColor: "#108ee9",
-};
+}; */
 
 const siderStyle: React.CSSProperties = {
   width: "450px",
@@ -31,13 +22,7 @@ const siderStyle: React.CSSProperties = {
   backgroundColor: "#fff",
 };
 
-const footerStyle: React.CSSProperties = {
-  textAlign: "center",
-  color: "#fff",
-  backgroundColor: "#7dbcea",
-};
-
-const { Header, Footer, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 
 interface CatalogLayoutProps {
   children: ReactNode;
@@ -46,12 +31,9 @@ interface CatalogLayoutProps {
 export default function CatalogLayout({ children }: CatalogLayoutProps) {
   const params = useParams();
 
-  const title = getPage(Object.values(params).slice(-1).toString())?.name;
-
   return (
     <div className={styles.layoutContainer}>
-      <BreadcrumbComponent />
-      <h1 style={headerStyle}>{title}</h1>
+      <PageTitle />
       {params.product ? (
         <div>{children}</div>
       ) : (

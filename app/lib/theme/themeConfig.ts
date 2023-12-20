@@ -29,6 +29,7 @@ const theme: ThemeConfig = {
     Layout: {
       headerBg: "#fff",
       headerHeight: 100,
+      footerPadding: "10px 50px",
     },
 
     Menu: {

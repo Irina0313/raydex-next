@@ -1,0 +1,15 @@
+.contactsContainer {
+  padding: 0 50px 30px 50px;
+}
+
+.cardContainer {
+  width: 355px;
+}
+
+.grayText {
+  color: rgb(153, 153, 153);
+}
+
+.link {
+  color: black;
+}

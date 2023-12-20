@@ -3,18 +3,17 @@
 import React from "react";
 import { HomeOutlined } from "@ant-design/icons";
 import { Breadcrumb } from "antd";
-import { usePathname, useParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { ItemType } from "antd/es/breadcrumb/Breadcrumb";
 import { getPage } from "@/app/utils/getPage";
 import style from "./style.module.css";
 
 const BreadcrumbComponent = () => {
-  const params = useParams();
   const fullPath = usePathname()
     .split("/")
     .filter((item) => !!item);
 
-  const results = Object.values(params).map((param, index) => {
+  const results = Object.values(fullPath).map((param, index) => {
     const path = fullPath.slice(0, index + 1).join("/");
     const pageName = getPage(param.toString())?.name;
 

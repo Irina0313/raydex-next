@@ -4,6 +4,8 @@ import StyledComponentsRegistry from "./lib/AntdRegistry";
 import theme from "./lib/theme/themeConfig";
 import HeaderComponent from "./ui/header";
 import FooterComponent from "./ui/footer";
+import BreadcrumbComponent from "./ui/breadcrumb";
+
 import "./globals.css";
 import { ConfigProvider } from "antd";
 
@@ -40,8 +42,8 @@ export default function RootLayout({ children }: React.PropsWithChildren) {
         <ConfigProvider theme={theme}>
           <StyledComponentsRegistry>
             <HeaderComponent />
+            <BreadcrumbComponent />
             <main className="main">{children}</main>
-
             <FooterComponent />
           </StyledComponentsRegistry>
         </ConfigProvider>

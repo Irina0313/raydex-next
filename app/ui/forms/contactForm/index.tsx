@@ -30,7 +30,7 @@ type FieldType = {
 
 const ContactForm = () => {
   const [form] = Form.useForm();
-  const [formAction, setFormAction] = useState("../../vendor/mail.php");
+  const [formAction, setFormAction] = useState("../../../utils/mail.php");
 
   const onFinish = async (values: any) => {
     console.log("Success:", values);

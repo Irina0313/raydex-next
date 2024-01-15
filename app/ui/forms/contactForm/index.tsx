@@ -2,6 +2,7 @@ import { Form, Input, Select, Button } from "antd";
 
 import styles from "./contactForm.module.css";
 import CustomButton from "../../button";
+import { useState } from "react";
 
 const { TextArea } = Input;
 const formItemLayout = {
@@ -13,10 +14,6 @@ const formItemLayout = {
     xs: { span: 24 },
     sm: { span: 16 },
   },
-};
-
-const onFinish = (values: any) => {
-  console.log("Success:", values);
 };
 
 const onFinishFailed = (errorInfo: any) => {
@@ -32,6 +29,37 @@ type FieldType = {
 };
 
 const ContactForm = () => {
+  const [form] = Form.useForm();
+  const [formAction, setFormAction] = useState("../../vendor/mail.php");
+
+  const onFinish = async (values: any) => {
+    console.log("Success:", values);
+
+    // Update the form action dynamically
+    form.submit();
+
+    try {
+      // Send form data to the server using fetch
+      const response = await fetch(formAction, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      // Check if the request was successful (status code 200-299)
+      if (response.ok) {
+        // Additional logic after successful form submission
+        console.log("Form submitted successfully!");
+      } else {
+        console.error("Failed to submit form:", response.statusText);
+      }
+    } catch (e) {
+      console.error("Error submitting form:", e);
+    }
+  };
+
   return (
     <>
       <h2 className={styles.textCenter}>Задать вопрос</h2>
@@ -42,7 +70,7 @@ const ContactForm = () => {
       <Form
         name="contactForm"
         method="POST"
-        action="../../../utils/mail.php"
+        action={formAction}
         style={{ maxWidth: 600 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}

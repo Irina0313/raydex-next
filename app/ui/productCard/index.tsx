@@ -6,6 +6,7 @@ import ImagesCarousel from "../imagesCarusel";
 import { findPathByName } from "@/app/utils/getFullPath";
 import { ProductItemType } from "@/app/lib/catalog/products/01_XRayAndGammaRadiationDosimeters/ElectronicDosimeters";
 import { CatalogItemType } from "@/app/lib/catalog/catalog";
+import CustomButton from "../button";
 
 const { Meta } = Card;
 
@@ -50,7 +51,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 }
                 description={`${p.status}`}
               />
-              <Button type="primary">Заказать</Button>
+              <CustomButton text="Заказать" />
             </Card>
           ),
       )}

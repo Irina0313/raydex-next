@@ -7,14 +7,14 @@ import CatalogNavigation from "../ui/catalogNavigation";
 import PageTitle from "../ui/pageTitle";
 import styles from "./catalog.module.css";
 
-/* const headerStyle: React.CSSProperties = {
+const headerStyle: React.CSSProperties = {
   color: "rgb(51, 51, 51)",
   height: 75,
   paddingInline: 0,
   fontWeight: "700",
   fontSize: "2.8em",
   lineHeight: "64px",
-}; */
+};
 
 const siderStyle: React.CSSProperties = {
   width: "450px",

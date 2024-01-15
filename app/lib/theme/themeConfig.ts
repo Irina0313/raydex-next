@@ -1,8 +1,11 @@
 import type { ThemeConfig } from "antd";
+
 const colorPrimary = "#2e69ad";
 
-const theme: ThemeConfig = {
+export const myTheme: ThemeConfig = {
+  cssVar: true,
   token: {
+    colorPrimary: "#2e69ad",
     fontSize: 16,
     colorPrimaryBg: "#dfe8ed",
     colorLink: "#2e69ad",
@@ -16,7 +19,6 @@ const theme: ThemeConfig = {
     colorPrimaryTextHover: "#5085ba",
     colorPrimaryText: "#2e69ad",
     colorPrimaryTextActive: "#1e4b87",
-    colorPrimary: colorPrimary,
     colorInfo: colorPrimary,
     colorTextBase: "#000",
     colorBgBase: "#fff",
@@ -43,11 +45,5 @@ const theme: ThemeConfig = {
       dotActiveWidth: 10,
       dotWidth: 10,
     },
-    Button: {
-      colorPrimary: "#2e69ad",
-      defaultColor: colorPrimary,
-    },
   },
 };
-
-export default theme;

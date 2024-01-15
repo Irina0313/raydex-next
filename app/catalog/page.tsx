@@ -1,11 +1,9 @@
-"use client";
 /* eslint-disable @next/next/no-img-element */
 import { Card, Flex } from "antd";
 
 import Link from "next/link";
 import { CatalogItemType, catalog } from "../lib/catalog/catalog";
 import { findPathByName } from "../utils/getFullPath";
-import Grid from "antd/es/card/Grid";
 
 const { Meta } = Card;
 

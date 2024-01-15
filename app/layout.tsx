@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import StyledComponentsRegistry from "./lib/AntdRegistry";
-import theme from "./lib/theme/themeConfig";
+import { myTheme } from "./lib/theme/themeConfig";
 import HeaderComponent from "./ui/header";
 import FooterComponent from "./ui/footer";
 import BreadcrumbComponent from "./ui/breadcrumb";
@@ -35,19 +35,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: React.PropsWithChildren) {
-  return (
-    <html lang="ru">
-      <body className={roboto.className}>
-        <ConfigProvider theme={theme}>
-          <StyledComponentsRegistry>
-            <HeaderComponent />
-            <BreadcrumbComponent />
-            <main className="main">{children}</main>
-            <FooterComponent />
-          </StyledComponentsRegistry>
+const RootLayout = ({ children }: React.PropsWithChildren) => (
+  <html lang="ru">
+    <body className={roboto.className}>
+      <StyledComponentsRegistry>
+        <ConfigProvider theme={myTheme}>
+          <HeaderComponent />
+          <BreadcrumbComponent />
+          <main className="main">{children}</main>
+          <FooterComponent />
         </ConfigProvider>
-      </body>
-    </html>
-  );
-}
+      </StyledComponentsRegistry>
+    </body>
+  </html>
+);
+
+export default RootLayout;

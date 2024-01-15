@@ -1,8 +1,7 @@
-import { Form, Input, Select, Button } from "antd";
+import { Form, Input } from "antd";
 
 import styles from "./contactForm.module.css";
 import CustomButton from "../../button";
-import { useState } from "react";
 
 const { TextArea } = Input;
 const formItemLayout = {
@@ -30,7 +29,7 @@ type FieldType = {
 
 const ContactForm = () => {
   const [form] = Form.useForm();
-  const [formAction, setFormAction] = useState("../../../utils/mail.php");
+  const formAction = "../../../php/mail.php";
 
   const onFinish = async (values: any) => {
     console.log("Success:", values);

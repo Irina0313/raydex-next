@@ -42,6 +42,7 @@ const ContactForm = () => {
       <Form
         name="contactForm"
         method="POST"
+        action="../../../utils/mail.php"
         style={{ maxWidth: 600 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
